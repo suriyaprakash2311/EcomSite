@@ -1,0 +1,153 @@
+package project02;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.Test;
+
+public class LumaEcomSite {
+@Test
+
+	public  void Ecomsite () throws InterruptedException {
+		
+System.setProperty("Webdriver.chrome.driver", "C:\\Users\\karun\\eclipse-workspace\\selenium\\Driver\\chromedriver.exe");
+		
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		 WebDriver driver = new ChromeDriver(options);
+		 driver.get("https://magento.softwaretestingboard.com/");
+		 driver.manage().window().maximize();
+	
+		
+		 System.out.println(driver.getCurrentUrl());
+		 System.out.println(driver.getTitle());
+		 
+		 //to Login the ecomsite
+		 driver.findElement(By.xpath("/html/body/div[1]/header/div[1]/div/ul/li[2]/a")).click();
+		 Thread.sleep(1000);
+		 
+		 WebElement EmailId = driver.findElement(By.id("email"));
+		 EmailId.sendKeys("suriyaprakashravi23@gmail.com");
+		 Thread.sleep(1000);
+		 
+		 WebElement Pswd = driver.findElement(By.id("pass"));
+		 Pswd.sendKeys("Suriravi@23");
+		 Thread.sleep(1000);
+		 
+		 WebElement SignInButton = driver.findElement(By.id("send2"));
+		 SignInButton.click();
+		 
+		    
+		    // to add cart the product
+		    
+		    WebElement MensWear = driver.findElement(By.xpath("//span[text()='Men']"));
+		    MensWear.click();
+		    Thread.sleep(3000);
+		    
+		    JavascriptExecutor js = (JavascriptExecutor) driver;
+	        js.executeScript("window.scrollBy(3,2000)");
+	        Thread.sleep(3000);
+	        
+	        WebElement selectHodiee = driver.findElement(By.xpath("//*[@id=\"maincontent\"]/div[4]/div[1]/div[1]/div[3]/div/div/ol/li[2]/div/a/span/span/img"));
+	        selectHodiee.click();
+	        Thread.sleep(1000);
+		    
+	        WebElement selectSize = driver.findElement(By.xpath("//div[@index=\"4\"]"));
+	        selectSize.click();
+	        Thread.sleep(1000);
+	        
+	        WebElement selectColor = driver.findElement(By.xpath("//div[@option-id=\"53\"]"));
+	        selectColor.click();
+	        Thread.sleep(1000);
+	        
+	        WebElement selectQTY = driver.findElement(By.id("qty"));
+	        selectQTY.clear();
+	        selectQTY.sendKeys("2");
+	        Thread.sleep(1000);
+	        
+	        WebElement AddCart = driver.findElement(By.xpath("//span[text()=\"Add to Cart\"]"));
+	        AddCart.click();
+	        Thread.sleep(3000);
+	       // to checkout the product
+	        
+	        WebElement OpenCart = driver.findElement(By.xpath("//a[@class=\"action showcart\"]"));
+	        OpenCart.click();
+	        Thread.sleep(3000);
+	        
+	        WebElement CheckOut = driver.findElement(By.xpath("//button[text()='Proceed to Checkout']"));
+	        CheckOut.click();
+	        Thread.sleep(4000);
+	        
+	        // to add shipping adress & payment page
+	        
+	      //  WebElement AddNewAdress = driver.findElement(By.xpath("//span[text()=\"New Address\"]"));
+	     //        AddNewAdress.click();
+	     //        Thread.sleep(2000);
+	        
+		    
+	     //       WebElement FirstNme = driver.findElement(By.name("firstname"));
+	     //       FirstNme.sendKeys("suriyaprakash");
+	     //      Thread.sleep(3000);
+	       
+	     //      WebElement LastName = driver.findElement(By.name("lastname"));
+	     //      LastName.sendKeys("Ravi");
+	     //      Thread.sleep(3000);
+	        
+	     //       WebElement AddressLine1 = driver.findElement(By.name("street[0]"));
+	     //       AddressLine1.sendKeys("No: 22, Kandhasamy Street");
+	     //       Thread.sleep(3000);
+	        
+	     //      WebElement AddressLine2 = driver.findElement(By.name("street[1]"));
+	     //       AddressLine2.sendKeys("Nellikuppam");
+	    //       Thread.sleep(3000);
+	        
+	     //      WebElement City = driver.findElement(By.name("city"));
+	     //      City.sendKeys("cuddalore");
+	     //      Thread.sleep(3000);
+	        
+	     //       WebElement State = driver.findElement(By.name("region_id"));
+	     //      State.sendKeys("Tamil Nadu");
+	     //      Thread.sleep(3000);
+	        
+	     //     WebElement PinCode = driver.findElement(By.name("postcode"));
+	     //   PinCode.sendKeys("607105");
+	   //     Thread.sleep(3000);
+	        
+	     //     WebElement Country = driver.findElement(By.name("country_id"));
+	     //     Country.sendKeys("India");
+	     //    Thread.sleep(3000);
+	        
+	     //   WebElement PhoneNumber = driver.findElement(By.name("telephone"));
+	     //     PhoneNumber.sendKeys("6385349958");
+	     //   Thread.sleep(3000);
+	        
+	     //    WebElement RadioButton = driver.findElement(By.name("ko_unique_3"));
+	     //    RadioButton.click();
+	     //    Thread.sleep(3000);
+	        
+	        
+	        WebElement NextButton = driver.findElement(By.xpath("//span[text()=\"Next\"]"));
+	        NextButton.click();
+	        Thread.sleep(3000);
+	        
+	        WebElement PlaceOrder = driver.findElement(By.xpath("//span[text()='Place Order']"));
+	        PlaceOrder.click();
+	        Thread.sleep(3000);    
+	        
+	        
+	        String expected = "Success Page";
+		    String actual = driver.getTitle();
+		    if (expected.equals(actual)) {
+		    	System.out.println("Order Successfully");
+		    }else {
+		    	System.out.println("Order failed");
+		    }
+		    
+		
+		   
+	}
+
+}
